@@ -1,0 +1,42 @@
+﻿<Window x:Class="OOP_Project.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOP_Project.Views"
+        mc:Ignorable="d"
+        Title="ShellView" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid Name="MainGrid" Margin="20,40,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Row 0-->
+        <TextBlock Text="Jewelry Store"  Style="{StaticResource MaterialDesignDisplay2TextBlock}" HorizontalAlignment="Center" Grid.Row="0"/>
+        <!--Row 1-->
+        <ToolBarTray Grid.Row="1" HorizontalAlignment="Center">
+                <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" >
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" 
+                             Margin="4" 
+                    IsChecked="True"  Name="LoadProductPage" Content="Product" ToolTip="Product Class" />
+                    <Separator />
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4" 
+                             Name="LoadCalculationsPage" Content="Calculations" ToolTip="Calculations Class" />
+                    <Separator />
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}" Margin="4"
+                             Name="LoadPersonPage"   Content="Person" ToolTip="Person Class" />
+                </ToolBar>
+            </ToolBarTray>
+        <!--Row 2-->
+        <ContentControl Grid.Row="2" x:Name="ActiveItem"/>
+    </Grid>
+</Window>
