@@ -14,13 +14,15 @@ namespace OOP_Project.ViewModels
             LoadProductPage();
 
         }
+
+        ProductViewModel productViewModel = new ProductViewModel();
         public void LoadPersonPage()
         {
-            ActivateItem(new PersonViewModel());
+            ActivateItem(productViewModel.UserPersonViewModel);
         }
         public void LoadProductPage()
         {
-            ActivateItem(new ProductViewModel());
+            ActivateItem(productViewModel);
         }
         public void LoadCalculationsPage()
         {

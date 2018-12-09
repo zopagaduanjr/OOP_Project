@@ -19,5 +19,9 @@ namespace OOP_Project.Models
             Price = price;
         }
 
+        public ProductModel()
+        {
+            
+        }
     }
 }

@@ -17,94 +17,96 @@
 
     <Grid Margin="0,35,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!-- row 0 / User Information -->
-        <materialDesign:Card Padding="8"
-            MaxWidth="450"
-            MaxHeight="300">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <!--Column 0-->
-                <Button 
-                    Content="Z"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    HorizontalAlignment="Left"
-                    ToolTip="MaterialDesignFloatingActionMiniButton"/>
-                <!--Column 1-->
-                <StackPanel
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    Grid.Column="1">
-                    <TextBlock
-                        FontWeight="Bold"
-                        Text="Zaldy Pagaduan" />
-                    <TextBlock
-                        Text="Junior" />
-                </StackPanel>
-                <!--Column 2-->
-                <StackPanel
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Grid.Column="2">
-                    <TextBlock
-                        FontWeight="Bold"
-                        Text="Davao city" />
-                    <TextBlock
-                        Text="08/15/1997" />
-                </StackPanel>
-
-            </Grid>
+        <materialDesign:Card Padding="3" MaxWidth="600" Height="120" >
+            <StackPanel>
+                <TextBlock Height="30" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="UserCardDetails" Width="25" Height="25" />
+                        <Label Margin="10,0,0,0" Content="User Details" FontWeight="Bold"/>
+                    </StackPanel>
+                </TextBlock>
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Column 0-->
+                    <Button 
+                        Margin="10,0,0,0"
+                        x:Name="FirstLetter"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionMiniButton"/>
+                    <!--Column 1-->
+                    <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Grid.Column="1">
+                        <TextBlock
+                            FontWeight="Bold"
+                            x:Name="FullName" />
+                        <TextBlock
+                            Text="27th Dan Eternal Ruler" />
+                    </StackPanel>
+                    <!--Column 2-->
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Grid.Column="2">
+                        <TextBlock HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="HomeAccount" Width="21" Height="21" />
+                                <TextBlock Text="{Binding Path=Address, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Margin="10,0,0,0"
+                                />                            </StackPanel>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="Cake" Width="20" Height="20" />               
+                                <TextBlock Text="{Binding Path=Birthday, Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Margin="10,0,0,0"
+                                           />
+                            </StackPanel>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
 
         </materialDesign:Card>
-        <!-- row 1 / User Cart-->
-        <materialDesign:Card
-            MaxWidth="450"
-            MaxHeight="300"
-            Grid.Row="1"
-            Padding="8">
+        <!-- row 2 / User Cart-->
+        <materialDesign:Card MaxWidth="600" MaxHeight="300" Grid.Row="1" Padding="3" Margin="0,10,0,0">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <!--Column 0-->
-                <Button 
-                    Content="Z"
-                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    HorizontalAlignment="Left"
-                    ToolTip="MaterialDesignFloatingActionMiniButton"/>
-                <!--Column 1-->
-                <StackPanel
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    Grid.Column="1">
-                    <TextBlock
-                        FontWeight="Bold"
-                        Text="Zaldy Pagaduan" />
-                    <TextBlock
-                        Text="Junior" />
-                </StackPanel>
-                <!--Column 2-->
-                <StackPanel
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Grid.Column="2">
-                    <TextBlock
-                        FontWeight="Bold"
-                        Text="Davao city" />
-                    <TextBlock
-                        Text="08/15/1997" />
-                </StackPanel>
-
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition MaxHeight="270"/>
+                </Grid.RowDefinitions>
+                <TextBlock Height="30" HorizontalAlignment="Left" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Cart" Width="25" Height="25"  />
+                        <Label Margin="10,0,0,0" Content="Cart Items" FontWeight="Bold"/>
+                    </StackPanel>
+                </TextBlock>
+                <ListView x:Name="UserCartCollection" Grid.Row="1" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn
+                            DisplayMemberBinding="{Binding Name, Mode=TwoWay}"
+                            Header="Name" />
+                            <GridViewColumn
+                            DisplayMemberBinding="{Binding Price,  Mode=TwoWay}"
+                            Header="Price" />
+                            <GridViewColumn
+                            DisplayMemberBinding="{Binding Description,  Mode=TwoWay}"
+                            Header="Description" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
 
         </materialDesign:Card>
