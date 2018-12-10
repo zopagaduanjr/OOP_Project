@@ -12,10 +12,9 @@ namespace OOP_Project.ViewModels
         public ShellViewModel()
         {
             LoadProductPage();
-
         }
-
         ProductViewModel productViewModel = new ProductViewModel();
+        CalculationsViewModel calculationsViewModel = new CalculationsViewModel();
         public void LoadPersonPage()
         {
             ActivateItem(productViewModel.UserPersonViewModel);
@@ -26,7 +25,8 @@ namespace OOP_Project.ViewModels
         }
         public void LoadCalculationsPage()
         {
-            ActivateItem(new CalculationsViewModel());
+            calculationsViewModel.UserPersonViewModel = productViewModel.UserPersonViewModel;
+            ActivateItem(calculationsViewModel);
         }
     }
 }

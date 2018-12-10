@@ -101,6 +101,8 @@ C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\Caliburn.Micro.Plat
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\Caliburn.Micro.Platform.dll
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\CommonServiceLocator.dll
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\DynamicData.dll
+C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\ExcelDataReader.dll
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\MaterialDesignColors.dll
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\ReactiveUI.dll
@@ -123,6 +125,8 @@ C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\Caliburn.Micro.xml
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\Caliburn.Micro.Platform.xml
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\Caliburn.Micro.Platform.Core.xml
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\DynamicData.xml
+C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\ExcelDataReader.xml
+C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\ExcelDataReader.DataSet.xml
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\MaterialDesignColors.pdb
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\MaterialDesignThemes.Wpf.xml
@@ -141,6 +145,7 @@ C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\System.Runtime.Comp
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\User\source\repos\OOP_Project\OOP_Project\bin\Debug\System.ValueTuple.xml
 C:\Users\User\source\repos\OOP_Project\OOP_Project\obj\Debug\OOP_Project.exe.config
+C:\Users\User\source\repos\OOP_Project\OOP_Project\obj\Debug\OOP_Project.csproj.ResolveComReference.cache
 C:\Users\User\source\repos\OOP_Project\OOP_Project\obj\Debug\Views\CalculationsView.g.cs
 C:\Users\User\source\repos\OOP_Project\OOP_Project\obj\Debug\Views\PersonView.g.cs
 C:\Users\User\source\repos\OOP_Project\OOP_Project\obj\Debug\Views\ProductView.g.cs

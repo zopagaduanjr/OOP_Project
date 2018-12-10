@@ -92,16 +92,16 @@
                         <Label Margin="10,0,0,0" Content="Cart Items" FontWeight="Bold"/>
                     </StackPanel>
                 </TextBlock>
-                <ListView x:Name="UserCartCollection" Grid.Row="1" >
+                <ListView x:Name="UserCartCollection" Grid.Row="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn
+                            <GridViewColumn Width="150"
                             DisplayMemberBinding="{Binding Name, Mode=TwoWay}"
                             Header="Name" />
-                            <GridViewColumn
+                            <GridViewColumn Width="150"
                             DisplayMemberBinding="{Binding Price,  Mode=TwoWay}"
                             Header="Price" />
-                            <GridViewColumn
+                            <GridViewColumn Width="150"
                             DisplayMemberBinding="{Binding Description,  Mode=TwoWay}"
                             Header="Description" />
                         </GridView>

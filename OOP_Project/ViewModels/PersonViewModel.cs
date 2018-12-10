@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OOP_Project.Class;
 using OOP_Project.Models;
 
 namespace OOP_Project.ViewModels
@@ -12,7 +13,7 @@ namespace OOP_Project.ViewModels
     {
         public PersonViewModel()
         {
-            PersonModel = new PersonModel("Zaldy", "O", "Pagaduan", "08/15/1997", "Davao City");
+            PersonModel = new PersonModel("Zaldy", "O", "Pagaduan", "08/15/1997", "Davao City", 800000);
         }
         private PersonModel _personModel;
         private BindableCollection<ProductModel> _userCartCollection = new BindableCollection<ProductModel>();
@@ -20,37 +21,40 @@ namespace OOP_Project.ViewModels
         private string _fullName;
         private string _address;
         private string _birthday;
+        private string _income;
+
+        //properties
+        public string Income
+        {
+            get => PersonModel.Income.ToString();
+            set => _income = value;
+        }
 
         public PersonModel PersonModel
         {
             get => _personModel;
             set => _personModel = value;
-        }
-
+        }   
         public BindableCollection<ProductModel> UserCartCollection
         {
             get => _userCartCollection;
             set => _userCartCollection = value;
         }
-
         public char FirstLetter
         {
             get => PersonModel.FirstName[0];
             set => _firstLetter = value;
         }
-
         public string Address
         {
             get => PersonModel.Address;
             set => _address = value;
         }
-
         public string Birthday
         {
             get => PersonModel.Birthdate;
             set => _birthday = value;
         }
-
         public string FullName
         {
             get
@@ -60,6 +64,5 @@ namespace OOP_Project.ViewModels
             }
             set => _fullName = value;
         }
-
     }
 }
