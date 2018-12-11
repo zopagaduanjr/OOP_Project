@@ -51,6 +51,8 @@ namespace OOP_Project.ViewModels
 
         }
 
+
+        //commands
         public bool CanAddCartCommand
         {
             get

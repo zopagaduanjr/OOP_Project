@@ -13,7 +13,7 @@ namespace OOP_Project.ViewModels
     {
         public PersonViewModel()
         {
-            PersonModel = new PersonModel("Zaldy", "O", "Pagaduan", "08/15/1997", "Davao City", 800000);
+            PersonModel = new PersonModel("Zaldy", "O", "Pagaduan", "08/15/1997", "Davao City", 250000);
         }
         private PersonModel _personModel;
         private BindableCollection<ProductModel> _userCartCollection = new BindableCollection<ProductModel>();

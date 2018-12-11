@@ -22,6 +22,10 @@ namespace OOP_Project.ViewModels
         private BindableCollection<Tax> _taxIncomeCollection = new BindableCollection<Tax>();
         private PersonViewModel _userPersonViewModel = new PersonViewModel();
         private Tax _taxType;
+        private string _taxDeduction;
+        private BindableCollection<ExcelSheet> _uploadedExcelSheetCollection = new BindableCollection<ExcelSheet>();
+        private ExcelSheet _selectedExcelSheet;
+
         ///props////
         public PersonViewModel UserPersonViewModel
         {
@@ -53,23 +57,52 @@ namespace OOP_Project.ViewModels
 
             }
         }
+        public string TaxDeduction
+        {
+            get => _taxDeduction;
+            set
+            {
+                _taxDeduction = value;
+                NotifyOfPropertyChange(() => TaxDeduction);
+            }
+        }
         public BindableCollection<Tax> TaxIncomeCollection
         {
             get => _taxIncomeCollection;
-            set => _taxIncomeCollection = value;
-        }
-        public DataTable UploadedDataTable
-        {
-            get => _uploadedDataTable;
             set
             {
-                _uploadedDataTable = value;
-                NotifyOfPropertyChange(() => UploadedDataTable);
-            } 
+                _taxIncomeCollection = value;
+                NotifyOfPropertyChange(() => TaxIncomeCollection);
+                NotifyOfPropertyChange(() => CanCalculateTaxCommand);
+
+            }
+        }
+        public BindableCollection<ExcelSheet> UploadedExcelSheetCollection
+        {
+            get => _uploadedExcelSheetCollection;
+            set
+            {
+                _uploadedExcelSheetCollection = value;
+                NotifyOfPropertyChange(() => _uploadedExcelSheetCollection);
+
+            }
+        }
+
+        public ExcelSheet SelectedExcelSheet
+        {
+            get => _selectedExcelSheet;
+            set
+            {
+                _selectedExcelSheet = value;
+                NotifyOfPropertyChange(() => SelectedExcelSheet);
+                NotifyOfPropertyChange(() => CanCalculateTaxCommand);
+
+            }
+
         }
 
 
-        //methods/
+        //main methods//
         public void OpenExcelFilePathDialogCommand()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -83,13 +116,35 @@ namespace OOP_Project.ViewModels
                 return;
             }
 
-            UploadedDataTable.Clear();
+            UploadedExcelSheetCollection.Clear();
             TaxIncomeCollection.Clear();
             ExcelToDataTableCommand(dlg.FileName);
+            SelectedExcelSheet = UploadedExcelSheetCollection.FirstOrDefault();
             RowsToTaxClassCommand();
-            TaxRangeCheckerCommand();
+            NotifyOfPropertyChange(() => SelectedExcelSheet);
+
 
         }
+        public void CalculateTaxCommand()
+        {
+            TaxIncomeCollection.Clear();
+            RowsToTaxClassCommand();
+            TaxRangeCheckerCommand();
+            SalaryDeductionCommand();
+        }
+        public bool CanCalculateTaxCommand
+        {
+            get
+            {
+                if (TaxIncomeCollection.Count != 0)
+                    return true;
+                else return false;
+            }
+        }
+
+
+        ///generic methods ///
+
         public void ExcelToDataTableCommand(string fileName)
         {
             using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
@@ -115,24 +170,50 @@ namespace OOP_Project.ViewModels
                     // 2. Use the AsDataSet extension metho
                     // d
                     var result = reader.AsDataSet();
-                    UploadedDataTable = result.Tables[0];
-                    NotifyOfPropertyChange(() => UploadedDataTable);
+                    if (reader.ResultsCount > 0)
+                    {
+                        for (int i = 0; i < reader.ResultsCount; i++)
+                        {
+                            var name = reader.Name;
+                            var sheetcount = i+1;
+                            var datatable = result.Tables[i];
+                            var currentsheet = new ExcelSheet(name,sheetcount.ToString(),datatable);
+                            UploadedExcelSheetCollection.Add(currentsheet);
+                            reader.NextResult();
+                        }
+                        NotifyOfPropertyChange(() => UploadedExcelSheetCollection);
+                    }
+                    NotifyOfPropertyChange(() => SelectedExcelSheet);
                     // The result of each spreadsheet is in result.Tables
                 }
             }
         }
         public void RowsToTaxClassCommand()
         {
-            foreach (DataRow dataRow in UploadedDataTable.Rows)
+            if (SelectedExcelSheet != null)
             {
-                var mintaxincome = dataRow[0].ToString();
-                var maxtaxincome = dataRow[1].ToString();
-                var taxrate = dataRow[2].ToString();
-                var taxfixedexcess = dataRow[3].ToString();
-                var tax = new Tax(mintaxincome,maxtaxincome,taxrate,taxfixedexcess);
-                TaxIncomeCollection.Add(tax);
+                if (SelectedExcelSheet.DataTable.Columns.Count == 4)
+                {
+                    foreach (DataRow dataRow in SelectedExcelSheet.DataTable.Rows)
+                    {
+                        var mintaxincome = dataRow[0].ToString();
+                        var maxtaxincome = dataRow[1].ToString();
+                        var taxrate = dataRow[2].ToString();
+                        var taxfixedexcess = dataRow[3].ToString();
+                        var tax = new Tax(mintaxincome, maxtaxincome, taxrate, taxfixedexcess);
+                        TaxIncomeCollection.Add(tax);
+                    }
+                    NotifyOfPropertyChange(() => TaxIncomeCollection);
+                    NotifyOfPropertyChange(() => CanCalculateTaxCommand);
+
+                }
+                else
+                {
+                    return;
+                }
+
             }
-            NotifyOfPropertyChange(() => TaxIncomeCollection);
+
         }   
         public void TaxRangeCheckerCommand()
         {
@@ -150,6 +231,16 @@ namespace OOP_Project.ViewModels
             }
             NotifyOfPropertyChange(() => TaxType);
 
+
+        }
+        public void SalaryDeductionCommand()
+        {
+            var income = Convert.ToDouble(UserPersonViewModel.Income);
+            var rate = Convert.ToDouble(TaxType.Rate);           
+            var excess = income - Convert.ToDouble(TaxType.MinIncome);
+            var totaldeduct = (excess * rate) + Convert.ToDouble(TaxType.FixedExcess);
+            TaxDeduction = totaldeduct.ToString();
+            NotifyOfPropertyChange(() => TaxDeduction);
 
         }
 
