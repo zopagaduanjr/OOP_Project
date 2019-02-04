@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="TaxCalculator.Core.Views.CalculationsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TaxCalculator.Core.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid Margin="0,35,0,0">
+        <materialDesign:Card MaxWidth="1200" MaxHeight="900" Padding="3" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--row 0-->
+                <!--Make this comboBox, because its CALCULATIONS-->
+                <TextBlock Height="40" HorizontalAlignment="Left" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="PaymentSettings" Width="29" Height="29"  />
+                        <TextBlock Margin="10,0,0,0" Text="Salary Slip" FontWeight="Bold"/>
+                    </StackPanel>
+                </TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <!--row 0, column 0-->
+                    <TextBlock Height="30" HorizontalAlignment="Left" Grid.Row="0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="CurrencyPhp" Width="22" Height="22"  />
+                            <TextBlock Margin="10,0,0,0" Text="Salary Breakdown"/>
+                        </StackPanel>
+                    </TextBlock>
+                    <!--row 0, column 1-->
+                    <Grid Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Height="30" HorizontalAlignment="Left"  VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="TableLarge"   />
+                                <TextBlock Margin="10,0,0,0" Text="Tax Table"/>
+                            </StackPanel>
+                        </TextBlock>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Height="30" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="1">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Kind="DatabaseSearch"   />
+                                    <TextBlock Margin="10,0,0,0" Text="Sheets:"/>
+                                </StackPanel>
+                            </TextBlock>
+                            <ComboBox Height="30" DisplayMemberPath="Name" SelectedItem="{Binding Path=SelectedExcelSheet, Mode=TwoWay}"
+                                      x:Name="UploadedExcelSheetCollection"/>
+
+                        </StackPanel>
+
+                    </Grid>
+                    <!--row 1, column 0-->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="5" >
+                        <TextBlock Height="24" HorizontalAlignment="Left"   >
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                <materialDesign:PackIcon Kind="PlusBox" Width="15" Height="15"  />
+                                <TextBlock Margin="5,0,0,0" Text="Earnings"/>
+                            </StackPanel>
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Basic Salary : "/>
+                            <TextBlock x:Name="Income"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tax Range : "/>
+                            <TextBlock x:Name="TaxType_MinIncome"/>
+                            <TextBlock Text =" - "/>
+                            <TextBlock x:Name="TaxType_MaxIncome"/>
+                        </StackPanel>
+                        <TextBlock Height="24" HorizontalAlignment="Left" Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="MinusBox"  Width="15" Height="15" />
+                                <TextBlock Margin="5,0,0,0" Text="Deductions"/>
+                            </StackPanel>
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="Income Tax : "/>
+                            <TextBlock x:Name="TaxDeduction"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!--row 1, column 1-->
+                    <DataGrid IsReadOnly="True"  Grid.Row="1" Grid.Column="1"  Margin="5" x:Name="SelectedExcelSheet_DataTable" MaxHeight="600"/>
+                    <!--row 2, column 1-->
+                    <Button x:Name="OpenExcelFilePathDialogCommand" Grid.Row="2"
+                            Grid.Column="1" HorizontalAlignment="Left" MinWidth="120" >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="TableEdit" />
+                            <Label Padding="0" Content="Upload Tax Table"/>
+                        </StackPanel>
+                    </Button>
+
+                    <!--row 2, column 0-->
+                    <Button x:Name="CalculateTaxCommand"
+                            Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" MinWidth="120" >
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Calculator" />
+                            <Label Padding="0" Content="Calculate"/>
+                        </StackPanel>
+                    </Button>
+
+
+                </Grid>
+            </Grid>
+
+        </materialDesign:Card>
+
+    </Grid>
+</UserControl>
