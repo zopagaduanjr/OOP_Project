@@ -58,14 +58,18 @@
                                 <TextBlock Margin="10,0,0,0" Text="Tax Table"/>
                             </StackPanel>
                         </TextBlock>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Height="30" HorizontalAlignment="Left"  VerticalAlignment="Center" Grid.Column="1">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <materialDesign:PackIcon Kind="DatabaseSearch"   />
-                                    <TextBlock Margin="10,0,0,0" Text="Sheets:"/>
-                                </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                            <TextBlock Height="30"  >
+                                <Grid Margin="0,6,8,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <materialDesign:PackIcon Kind="DatabaseSearch" Grid.Column="0"  />
+                                    <TextBlock Grid.Column="1" Margin="10,0,0,0" Text="Sheets:"/>
+                                </Grid>
                             </TextBlock>
-                            <ComboBox Height="30" DisplayMemberPath="Name" SelectedItem="{Binding Path=SelectedExcelSheet, Mode=TwoWay}"
+                            <ComboBox Height="30"  DisplayMemberPath="Name" SelectedItem="{Binding Path=SelectedExcelSheet, Mode=TwoWay}"
                                       x:Name="UploadedExcelSheetCollection"/>
 
                         </StackPanel>
