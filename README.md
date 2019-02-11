@@ -1,5 +1,7 @@
 # Tax Calculator
+WPF Application | Tax Excel User Interface | Caliburn Micro
 
+![Tax Excel User Interface](OOPProject.gif)
 **Has 2 main Commands, these are OpenExcelFilePathDialogCommand & CalculateTaxCommand**
 
 ## OpenExcelFilePathDialogCommand
